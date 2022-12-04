@@ -20,6 +20,9 @@
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "commit": "cz",
     "dev": "vite",
     "lint": "xo --fix",
     "build": "tsc && vite build",
