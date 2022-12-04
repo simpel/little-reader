@@ -7,7 +7,7 @@ export const useWord = () => {
 		queryKey: [window.location.origin, 'words'],
 		staleTime: 1000 * 60 * 60 * 24,
 		queryFn: async () =>
-			axios.get<string[]>('/data/words.json', {
+			axios.get<string[]>('data/words.json', {
 				baseURL: window.location.origin,
 			}),
 	});
