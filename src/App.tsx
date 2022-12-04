@@ -1,16 +1,83 @@
-import gap from './assets/images/gap.svg';
+import {
+	AppShell,
+	Center,
+	Footer as MantineFooter,
+	Header as MantineHeader,
+	MantineProvider,
+} from '@mantine/core';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import Sentence from './components/sentence/Sentence';
 
 const App = () => {
+	const queryClient = new QueryClient();
+
 	return (
-		<div className="flex items-center justify-center h-screen">
-			<div className="grid items-end grid-flow-col gap-2 p-12 font-bold bg-white text-7xl auto-cols-max rounded-2xl">
-				<span>Ä</span>
-				<img src={gap} alt="gap" width="30px" height="8px" />
-				<span>T</span>
-				<img src={gap} alt="gap" width="30px" height="8px" />
-				<span>A</span>
-			</div>
-		</div>
+		<QueryClientProvider client={queryClient}>
+			<MantineProvider
+				theme={{
+					fontFamily: 'Comfortaa, sans-serif',
+					headings: { fontFamily: 'Comfortaa, sans-serif' },
+					fontSizes: {
+						xs: 12,
+						sm: 14,
+						md: 16,
+						lg: 24,
+						xl: 48,
+					},
+					globalStyles: (theme) => ({
+						'*, *::before, *::after': {
+							boxSizing: 'border-box',
+						},
+						body: {
+							...theme.fn.fontStyles(),
+							margin: 0,
+							padding: 0,
+							backgroundColor:
+								theme.colorScheme === 'dark'
+									? theme.colors.dark[7]
+									: theme.colors.green[0],
+							color:
+								theme.colorScheme === 'dark'
+									? theme.colors.dark[0]
+									: theme.black,
+							lineHeight: theme.lineHeight,
+						},
+					}),
+				}}
+			>
+				<AppShell
+					padding={0}
+					footer={
+						<MantineFooter
+							children={<Footer />}
+							height={90}
+							fixed
+							withBorder={false}
+						/>
+					}
+					header={
+						<MantineHeader
+							children={<Header />}
+							fixed
+							height={95}
+							withBorder={false}
+						/>
+					}
+				>
+					<Center
+						style={{
+							height: 'calc(100vh - 185px)',
+						}}
+					>
+						<Sentence />
+					</Center>
+				</AppShell>
+			</MantineProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
 	);
 };
 

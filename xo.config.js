@@ -2,6 +2,7 @@ module.exports = {
   prettier: true,
   plugins: [
     "unused-imports",
+    "@tanstack/query"
   ],
   include: [
       "**/*.ts",
@@ -22,6 +23,8 @@ module.exports = {
       "template/**"
     ],
   rules: {
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/prefer-query-object-syntax": "error",
     'import/extensions': ['off'],
     "no-unused-vars": "off",
     "no-console": "warn",
