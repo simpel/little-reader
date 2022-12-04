@@ -44,6 +44,10 @@ const useStore = create<TStore>()(
 			allWords: [],
 			currentWords: [],
 			useLowercase: false,
+			showSettings: false,
+			setShowSettings(showSettings) {
+				set({ showSettings });
+			},
 			setUseLowercase(useLowercase: boolean) {
 				set({ useLowercase });
 			},
@@ -60,11 +64,21 @@ const useStore = create<TStore>()(
 				set(() => ({ numberOfConfettis }));
 			},
 			setMaxWords(change) {
-				set(() => ({ maxWords: get().maxWords + change }));
+				const maxWords = get().maxWords;
+				console.log(maxWords);
+
+				if (maxWords >= 1) {
+					set(() => ({ maxWords: maxWords + change }));
+				}
+
 				get().setCurrentWords();
 			},
 			setMaxLetters(change) {
-				set(() => ({ maxLetters: get().maxLetters + change }));
+				const maxLetters = get().maxLetters;
+				if (maxLetters > 1) {
+					set(() => ({ maxLetters: maxLetters + change }));
+				}
+
 				get().setCurrentWords();
 			},
 			setAllWords(allWords) {

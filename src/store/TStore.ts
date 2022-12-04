@@ -7,6 +7,8 @@ export type TStore = {
 	numberOfConfettis: number;
 	currentWords: string[];
 	allWords: string[];
+	showSettings: boolean;
+	setShowSettings: (showSettings: boolean) => void;
 	setUseLowercase: (useLowercase: boolean) => void;
 	increaseScore: () => void;
 	setNumberOfConfettis: (numberOfConfettis: number) => void;

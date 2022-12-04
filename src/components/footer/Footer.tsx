@@ -25,26 +25,15 @@ const Footer = () => {
 	return (
 		<Container fluid>
 			<Grid justify={'space-between'} align="center">
-				<Grid.Col span={'content'}>
-					<Group spacing={'lg'} align="center">
-						<Group spacing={'sm'} align="center">
-							<ThemeIcon
-								color="yellow"
-								radius={'xl'}
-								size="xl"
-								variant="gradient"
-								gradient={{ from: 'indigo', to: 'blue' }}
-							>
-								<IconTrophy size={16} />
-							</ThemeIcon>
-							<Text style={{ lineHeight: 0 }}>Poäng</Text>
-						</Group>
-						<Text weight={'bolder'} size="lg" style={{ lineHeight: 0 }}>
+				<Grid.Col span={4}>
+					<Group spacing={'xs'} align="center">
+						<Text style={{ lineHeight: 1 }}>Poäng</Text>
+						<Text weight={'bolder'} size="lg" style={{ lineHeight: 1 }}>
 							{currentScore}
 						</Text>
 					</Group>
 				</Grid.Col>
-				<Grid.Col span={'auto'}>
+				<Grid.Col span={4}>
 					<Center>
 						<Button
 							radius={'xl'}
@@ -54,8 +43,6 @@ const Footer = () => {
 							onClick={() => {
 								setCurrentWords();
 								increaseScore();
-								console.log('currentScore', currentScore);
-								console.log('highScore', highScore);
 
 								if (currentScore === highScore) {
 									setNumberOfConfettis(100);
@@ -67,8 +54,8 @@ const Footer = () => {
 						</Button>
 					</Center>
 				</Grid.Col>
-				<Grid.Col span={'content'}>
-					<Group spacing={'lg'} align="center">
+				<Grid.Col span={4}>
+					<Group spacing={'lg'} align="center" position="right">
 						<Group spacing={'sm'} align="center">
 							<ThemeIcon
 								color="yellow"
@@ -79,9 +66,9 @@ const Footer = () => {
 							>
 								<IconTrophy size={16} />
 							</ThemeIcon>
-							<Text style={{ lineHeight: 0 }}>Highscore</Text>
+							<Text style={{ lineHeight: 1 }}>Highscore</Text>
 						</Group>
-						<Text weight={'bolder'} size="lg" style={{ lineHeight: 0 }}>
+						<Text weight={'bolder'} size="lg" style={{ lineHeight: 1 }}>
 							{highScore}
 						</Text>
 					</Group>
