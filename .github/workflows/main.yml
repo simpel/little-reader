@@ -18,7 +18,7 @@ jobs:
     - name: Run yarn
       run: yarn
     - name: Release new version
-      run: yarn release
+      run: yarn deploy
     - name: Commit new version
       run: git push --follow-tags origin main
     - name: Publish
