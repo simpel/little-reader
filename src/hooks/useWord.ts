@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useWord = () => {
 	return useQuery<AxiosResponse<string[]>, Error>({
-		queryKey: [window.location.origin, 'words'],
+		queryKey: [window.location.href, 'words'],
 		staleTime: 1000 * 60 * 60 * 24,
 		queryFn: async () =>
 			axios.get<string[]>('data/words.json', {
-				baseURL: window.location.origin,
+				baseURL: window.location.href,
 			}),
 	});
 };
