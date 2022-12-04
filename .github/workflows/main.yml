@@ -1,7 +1,7 @@
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-    - main
+    branches: [$default-branch]
 
 permissions:
   contents: read
