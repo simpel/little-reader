@@ -32,5 +32,5 @@ jobs:
     - name: Commit new version
       run: git push --follow-tags origin main
     - name: Deploy
-      run: yarn deploy
+      run: gh-pages -d dist
  
