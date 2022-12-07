@@ -3,8 +3,6 @@ import useStore from '../../store/Store';
 import Settings from '../Settings/Settings';
 
 const Header = () => {
-	const useLowercase = useStore((state) => state.useLowercase);
-	const setUseLowercase = useStore((state) => state.setUseLowercase);
 	const setShowSettings = useStore((state) => state.setShowSettings);
 
 	return (

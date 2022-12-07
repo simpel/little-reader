@@ -10,44 +10,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Sentence from './components/sentence/Sentence';
+import themeStyle from './theme/Styles';
 
 const App = () => {
 	const queryClient = new QueryClient();
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<MantineProvider
-				theme={{
-					fontFamily: 'Comfortaa, sans-serif',
-					headings: { fontFamily: 'Comfortaa, sans-serif' },
-					fontSizes: {
-						xs: 12,
-						sm: 14,
-						md: 16,
-						lg: 24,
-						xl: 48,
-					},
-					globalStyles: (theme) => ({
-						'*, *::before, *::after': {
-							boxSizing: 'border-box',
-						},
-						body: {
-							...theme.fn.fontStyles(),
-							margin: 0,
-							padding: 0,
-							backgroundColor:
-								theme.colorScheme === 'dark'
-									? theme.colors.dark[7]
-									: theme.colors.green[0],
-							color:
-								theme.colorScheme === 'dark'
-									? theme.colors.dark[0]
-									: theme.black,
-							lineHeight: theme.lineHeight,
-						},
-					}),
-				}}
-			>
+			<MantineProvider theme={themeStyle}>
 				<AppShell
 					padding={0}
 					footer={

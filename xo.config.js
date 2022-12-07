@@ -61,7 +61,7 @@ module.exports = {
       selector: 'typeAlias'
     }, {
       format: ['PascalCase'],
-      prefix: ['is', 'should', 'has', 'can', 'did', 'will'],
+      prefix: ['is', 'should', 'has', 'can', 'did', 'will', 'show', 'hide'],
       selector: 'variable',
       types: ['boolean']
     }],

@@ -65,7 +65,6 @@ const useStore = create<TStore>()(
 			},
 			setMaxWords(change) {
 				const maxWords = get().maxWords;
-				console.log(maxWords);
 
 				if (maxWords >= 1) {
 					set(() => ({ maxWords: maxWords + change }));
