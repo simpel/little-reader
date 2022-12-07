@@ -1,36 +1,71 @@
+name: Build and deploy 
+
 on:
   push:
-    branches: main
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches:
+      - main
 
 jobs:
-  release:
-    name: Release
+  lint:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-  
     steps:
-    - run: |
-       git config --global user.email "me@joelsanden.se"
-       git config --global user.name "Joel Sandén"
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Run yarn
-      run: yarn
-    - name: Release new version
-      run: yarn release
-    - name: Commit new version
-      run: git push --follow-tags origin main
-    - name: Deploy
-      run: gh-pages -d dist
- 
+      - name: Checkout 🛎️
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false
+
+      - name: Install 🔧
+        run: yarn
+
+      - name: Lint 🚨
+        run: |
+          yarn lint
+
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        run: |
+          git config --global user.email "me@joelsanden.se"
+          git config --global user.name "Joel Sandén"
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false
+
+      - name: Install 🔧
+        run: yarn
+
+      - name: Versioning 📦
+        run: |
+          yarn release
+         
+  publish:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        run: |
+          git config --global user.email "me@joelsanden.se"
+          git config --global user.name "Joel Sandén"
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install 🔧
+        run: yarn
+
+      - name: Build 🏗️
+        run: |
+          yarn build
+
+      -
+        name: Deploy to GitHub Pages 🚀
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
